@@ -9,10 +9,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.0.0
       - name: Set Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v1
         with:
           node-version: '14'
-          check-latest: true
       - name: Install dependencies
         run: npm ci
       - name: Test
@@ -24,10 +23,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.0.0
       - name: Set Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v1
         with:
           node-version: '14'
-          check-latest: true
       - name: Install dependencies
         run: npm ci
       - name: Lint
