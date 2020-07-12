@@ -4,14 +4,18 @@ on: push
 jobs:
   unit-test:
     name: Unit test
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [12, 14]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2.0.0
-      - name: Set Node.js
-        uses: actions/setup-node@v1
+      - name: Set Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v1.4.2
         with:
-          node-version: '14'
+          node-version: ${{ matrix.node }}
       - name: Install dependencies
         run: npm ci
       - name: Test
@@ -23,9 +27,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.0.0
       - name: Set Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v1.4.2
         with:
-          node-version: '14'
+          node-version:
       - name: Install dependencies
         run: npm ci
       - name: Lint
